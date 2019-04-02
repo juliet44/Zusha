@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1018592119342",
+    "firebase_url": "https://zushakenya-9829e.firebaseio.com",
+    "project_id": "zushakenya-9829e",
+    "storage_bucket": "zushakenya-9829e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018592119342:android:1be2e3b68cd1e32e",
+        "android_client_info": {
+          "package_name": "com.ck.zusha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018592119342-mia09p9o0bjphpmujhg28aqba75v39qs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ck.zusha",
+            "certificate_hash": "674ddc9ceac3732b387cf2cfd8236701f05ba2fa"
+          }
+        },
+        {
+          "client_id": "1018592119342-nn5c5g8nltkpd1sfnd3odm2vt0trai33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCf-bSBOjtCE64hM0fuFyVEkUkow57tC30"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018592119342-nn5c5g8nltkpd1sfnd3odm2vt0trai33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
