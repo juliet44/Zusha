@@ -10,10 +10,12 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -46,7 +48,7 @@ public class NewPost extends AppCompatActivity {
    private StorageReference storageReference;
    private DatabaseReference databaseReference;
 
-
+   ImageButton back;
     FirebaseUser mUser;
     Post post;
 
@@ -55,8 +57,6 @@ public class NewPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
 
-
-
         editTextDescription = (EditText) findViewById(R.id.editText_description);
         btnUpload = (Button) findViewById(R.id.btn_Upload);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -64,6 +64,15 @@ public class NewPost extends AppCompatActivity {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
         databaseReference=FirebaseDatabase.getInstance().getReference("uploads");
+        back=(ImageButton)findViewById(R.id.backArrow);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(NewPost.this, HomeActivity.class);
+                startActivity(i);
+
+            }
+        });
 
         btnChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override

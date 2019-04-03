@@ -5,11 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
     tools:context=".NewPost">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:background="@color/primary_darker"
+        android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/backArrow"
+                android:background="@color/primary_darker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"/>
+
+    </android.support.design.widget.AppBarLayout>
+
 
     <Button
         android:id="@+id/btn_chooseImage"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/appBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose image"
@@ -20,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="add Description"
+        android:layout_below="@+id/appBar"
         android:layout_toEndOf="@+id/btn_chooseImage"
         android:layout_toRightOf="@+id/btn_chooseImage"
         android:inputType="textMultiLine"/>
