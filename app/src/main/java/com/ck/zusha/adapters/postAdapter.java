@@ -50,14 +50,14 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postviewHolder
              Post post=postList.get(position);
             postref= FirebaseDatabase.getInstance().getReference("uploads");
             final String postId= post.getPostId();
-
+            holder.textViewLocation.setText((("Location: ")+post.getLocation()));
             holder.textViewDescription.setText(post.getDescription());
-
             if(post.getImagedownloadURI()!=null) {
                 GlideApp.with(mContext)
                         .load(post.getImagedownloadURI())
                         .into(holder.imageDisplay);
             }
+
 
             holder.setButtonStatus(postId);
 
@@ -123,6 +123,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postviewHolder
         public ImageView imageDisplay;
         ImageButton likeButton,commentButton;
         TextView numberOfLikes;
+        TextView textViewLocation;
         int countLikes;
         String currentUserId;
         DatabaseReference likesRef;
@@ -135,6 +136,7 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postviewHolder
             likeButton=itemView.findViewById(R.id.likeButton);
             commentButton=itemView.findViewById(R.id.commentButton);
             numberOfLikes=itemView.findViewById(R.id.noOfLikes);
+            textViewLocation=itemView.findViewById(R.id.textViewLocation);
             likesref=FirebaseDatabase.getInstance().getReference().child("likes");
             currentUserId=FirebaseAuth.getInstance().getCurrentUser().getUid();
         }
@@ -146,12 +148,12 @@ public class postAdapter extends RecyclerView.Adapter<postAdapter.postviewHolder
                     if(dataSnapshot.child(postId).hasChild(currentUserId)){
                         countLikes=(int)dataSnapshot.child(postId).getChildrenCount();
                         likeButton.setImageResource(R.drawable.liked);
-                        numberOfLikes.setText(Integer.toString(countLikes));
+                        numberOfLikes.setText((Integer.toString(countLikes)+("likes")));
                     }else {
 
                         countLikes=(int)dataSnapshot.child(postId).getChildrenCount();
                         likeButton.setImageResource(R.drawable.ic_star_like);
-                        numberOfLikes.setText(Integer.toString(countLikes));
+                        numberOfLikes.setText((Integer.toString(countLikes)+("likes")));
                     }
 
                 }

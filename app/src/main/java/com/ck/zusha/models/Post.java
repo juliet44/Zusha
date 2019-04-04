@@ -7,17 +7,21 @@ public class Post {
     String senderEmail;
     String imagedownloadURI;
     String description;
+    String location;
 
 
     public Post(){
 
     }
-    public Post(String postId ,String imagedownloadURI, String description) {
+    public Post(String postId ,String imagedownloadURI, String description,String location) {
 
       if (description.trim().equals("")){
           description="no description";
       }
-
+      if(location.trim().equals("")){
+          location="no location";
+      }
+        this.location=location;
         this.imagedownloadURI = imagedownloadURI;
         this.description = description;
         this.postId=postId;
@@ -57,5 +61,13 @@ public class Post {
 
     public void setSenderEmail(String senderEmail) {
         this.senderEmail = senderEmail;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

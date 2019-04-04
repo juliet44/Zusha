@@ -51,12 +51,13 @@ public class NewPost extends AppCompatActivity {
    ImageButton back;
     FirebaseUser mUser;
     Post post;
+    EditText editTextLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
-
+        editTextLocation=(EditText)findViewById(R.id.editTextLocation);
         editTextDescription = (EditText) findViewById(R.id.editText_description);
         btnUpload = (Button) findViewById(R.id.btn_Upload);
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -151,7 +152,7 @@ public class NewPost extends AppCompatActivity {
                         Uri downloadUri=task.getResult();
                         //Log.e(TAG,"then"+downloadUri.toString());
                         String postId= databaseReference.push().getKey();
-                        post=new Post(postId,downloadUri.toString(),editTextDescription.getText().toString());
+                        post=new Post(postId,downloadUri.toString(),editTextDescription.getText().toString(),editTextLocation.getText().toString());
                         databaseReference.child(postId).setValue(post);
                         finish();
                     }else {

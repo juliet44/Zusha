@@ -1,4 +1,4 @@
-package com.ck.zusha;
+package com.ck.zusha.fragments;
 
 
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.ck.zusha.NewPost;
+import com.ck.zusha.R;
 import com.ck.zusha.adapters.postAdapter;
 import com.ck.zusha.models.Post;
 import com.google.firebase.database.DataSnapshot;
@@ -77,7 +79,7 @@ public class Home extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getActivity(),NewPost.class);
+                Intent i=new Intent(getActivity(), NewPost.class);
                 startActivity(i);
             }
         });

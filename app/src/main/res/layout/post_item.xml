@@ -28,6 +28,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:id="@+id/textViewLocation"
+            android:text="Location"
+            android:layout_margin="6dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             />
+
 
 
     <LinearLayout
@@ -59,9 +69,10 @@
             android:id="@+id/commentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
+            android:layout_marginLeft="100dp"
             android:baselineAlignBottom="false"
             android:src="@drawable/ic_comment" />
+
 
     </LinearLayout>
     </LinearLayout>
