@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.ck.zusha.adapters.CommentsAdapter;
+import com.ck.zusha.models.Comments;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,9 +25,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class CommentActivity extends AppCompatActivity {
@@ -33,6 +37,8 @@ public class CommentActivity extends AppCompatActivity {
     private ImageButton postCommentButton;
     private EditText commentInputText;
     private RecyclerView recyclerViewList;
+    private CommentsAdapter commentsAdapter;
+    private List<Comments>commentsList;
     private String postId,currentuserID;
     private DatabaseReference usersref,databaseReference;
     private FirebaseAuth mAuth;
@@ -49,11 +55,6 @@ public class CommentActivity extends AppCompatActivity {
         databaseReference=FirebaseDatabase.getInstance().getReference("uploads").child(postId).child("comments");
 
         recyclerViewList=(RecyclerView)findViewById(R.id.commentList);
-        recyclerViewList.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        recyclerViewList.setLayoutManager(linearLayoutManager);
 
         commentInputText=(EditText)findViewById(R.id.inputComment);
         postCommentButton=(ImageButton)findViewById(R.id.sendComment);
@@ -78,6 +79,32 @@ public class CommentActivity extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        recyclerViewList.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerViewList.setLayoutManager(linearLayoutManager);
+        commentsList=new ArrayList<>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        commentsList.clear();
+                for (DataSnapshot postSnapshot:dataSnapshot.getChildren()){
+                    Comments comments=postSnapshot.getValue(Comments.class);
+                    commentsList.add(comments);
+                }
+                commentsAdapter=new CommentsAdapter(CommentActivity.this,commentsList);
+                recyclerViewList.setAdapter(commentsAdapter);
+                commentsAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(CommentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
